@@ -2506,9 +2506,16 @@ document.getElementById('checkin-btn').addEventListener('click', async ()=>{
       return;
     }
 
-    // 인증 정보 메모리 + localStorage 보관 (새로고침 시 자동 로그인)
+    // 인증 정보 메모리 + localStorage 캐시 (student 객체 통째 + 1시간 TTL)
     _auth = { name: j.student.name, phone: phoneRaw };
-    try { localStorage.setItem('founders_auth', JSON.stringify(_auth)); } catch(e){}
+    try {
+      localStorage.setItem('founders_auth', JSON.stringify({
+        name: _auth.name,
+        phone: _auth.phone,
+        student: j.student,
+        cachedAt: Date.now(),
+      }));
+    } catch(e){}
 
     // 카드 채우기 + 좌석 배치도
     fillTicketCard(j.student);
@@ -2518,6 +2525,7 @@ document.getElementById('checkin-btn').addEventListener('click', async ()=>{
     // 폼 숨김 → 발사 애니메이션 → 카드 reveal + URL을 /dashboard로 변경
     document.getElementById('checkin-form').style.display = 'none';
     await runLaunch(2500);
+    try { sessionStorage.setItem('founders_launch_played', '1'); } catch(e){}
     document.getElementById('ticket-card-wrap').classList.add('visible');
     document.getElementById('seatmap-wrap').classList.add('visible');
     document.getElementById('leaderboard-wrap').classList.add('visible');
@@ -2537,28 +2545,55 @@ document.getElementById('checkin-btn').addEventListener('click', async ()=>{
 
 function showErr(msg){const e=document.getElementById('error-msg');e.textContent=msg;e.style.display='block';}
 
-// 자동 로그인 (localStorage 인증 정보 → 카드 reveal, 애니메이션 skip)
+// 자동 로그인 — localStorage 캐시 우선 사용 (API 호출 최소화) + 세션당 1번 발사 애니메이션
+const AUTH_CACHE_TTL = 60 * 60 * 1000; // 1시간
+
 async function autoLogin(){
   try {
     const saved = localStorage.getItem('founders_auth');
     if (!saved) return false;
-    const { name, phone } = JSON.parse(saved);
+    const parsed = JSON.parse(saved);
+    const { name, phone, student, cachedAt } = parsed;
     if (!name || !phone) return false;
-    const r = await fetch(API_BASE, {
-      method: 'POST',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({ type: 'student_login', name, phone }),
-    });
-    const j = await r.json();
-    if (!j.ok) {
-      localStorage.removeItem('founders_auth');
-      return false;
+
+    const cacheValid = student && cachedAt && (Date.now() - cachedAt < AUTH_CACHE_TTL);
+    let s = null;
+    if (cacheValid) {
+      // 캐시된 student 사용 — Sheets API 호출 없음
+      s = student;
+    } else {
+      // 캐시 없거나 만료 → 서버 검증
+      const r = await fetch(API_BASE, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({ type: 'student_login', name, phone }),
+      });
+      const j = await r.json();
+      if (!j.ok) {
+        localStorage.removeItem('founders_auth');
+        return false;
+      }
+      s = j.student;
+      // 캐시 갱신
+      try {
+        localStorage.setItem('founders_auth', JSON.stringify({
+          name: s.name, phone, student: s, cachedAt: Date.now(),
+        }));
+      } catch(e){}
     }
-    _auth = { name: j.student.name, phone };
-    fillTicketCard(j.student);
+
+    _auth = { name: s.name, phone };
+    fillTicketCard(s);
     if (!allSeats.length) await fetchSeatMap();
-    renderSeatMap(j.student.name);
+    renderSeatMap(s.name);
+
+    // 세션당 1번 발사 애니메이션 (같은 탭 새로고침은 skip, 새 탭은 다시 와우)
     document.getElementById('checkin-form').style.display = 'none';
+    const launchPlayed = (() => { try { return sessionStorage.getItem('founders_launch_played') === '1'; } catch(e) { return false; } })();
+    if (!launchPlayed) {
+      await runLaunch(2500);
+      try { sessionStorage.setItem('founders_launch_played', '1'); } catch(e){}
+    }
     document.getElementById('ticket-card-wrap').classList.add('visible');
     document.getElementById('seatmap-wrap').classList.add('visible');
     document.getElementById('leaderboard-wrap').classList.add('visible');
