@@ -1982,8 +1982,9 @@ function genQR(seed){
 function renderSeatMap(myName){
   const grid=document.getElementById('seat-grid'); grid.innerHTML='';
   const ALL_SLOT_LABELS=['A','B','C','D','E','F','G'];
-  // 명단에 존재하는 최대 팀 번호까지 순회 (현재 13팀)
-  const maxTeam=Math.max(13, ...((allSeats||[]).map(c=>Number(c.team)||0)));
+  // 테스트 계정 팀(50번 이상)은 좌석배치도에서 제외 (운영 학생만 보임)
+  const validTeams=(allSeats||[]).map(c=>Number(c.team)||0).filter(t=>t>0&&t<50);
+  const maxTeam=validTeams.length?Math.max(13,...validTeams):13;
   for(let t=1;t<=maxTeam;t++){
     const teamMembers=(allSeats||[]).filter(c=>c.team===t);
     if(!teamMembers.length) continue;
