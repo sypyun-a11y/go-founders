@@ -6,18 +6,31 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="파운더스 1기 크루로 호명되었습니다">
 <meta property="og:description" content="2026.05.16 출항 · MISSION: LAUNCH · 50인 크루 정원">
-<meta property="og:image" content="og-image.png">
+<meta property="og:image" content="/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <title>SPARTA SPACE — MISSION: LAUNCH</title>
 <style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
-:root { --red:#c8102e; --gold:#f5c842; --silver:#c0c8d8; --muted:#7080a0; }
+:root {
+  --red:#c8102e; --gold:#f5c842; --silver:#c0c8d8; --muted:#7080a0;
+  --font-body:'Pretendard Variable','Pretendard','Apple SD Gothic Neo','Noto Sans KR',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-ui:'Space Grotesk','Pretendard Variable','Pretendard',system-ui,sans-serif;
+  --font-display:'Orbitron','Space Grotesk','Pretendard Variable',system-ui,sans-serif;
+  --page-gutter:clamp(14px, 2.4vw, 24px);
+  --wide-panel:min(calc(var(--vw, 100vw) - (var(--page-gutter) * 2)), 1340px);
+  --content-panel:min(calc(var(--vw, 100vw) - (var(--page-gutter) * 2)), 1100px);
+}
 
 html,body {
   background:#04060f; color:#fff;
-  font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;
+  font-family:var(--font-body);
   min-height:100vh; overflow-x:clip;
   -webkit-font-smoothing:antialiased;
+  text-rendering:geometricPrecision;
 }
 
 /* ── BG CANVAS (행성 지평선 + 별) ── */
@@ -42,10 +55,11 @@ html,body {
   box-shadow:0 0 60px rgba(30,80,200,.45),0 0 120px rgba(30,80,200,.12);
 }
 .sparta-logo svg { width:82px; height:82px; }
-.hero-eyebrow { font-size:12px; letter-spacing:4px; color:var(--silver); text-transform:uppercase; margin-bottom:12px; opacity:.78; }
-.hero-title   { font-size:13px; letter-spacing:3px; color:var(--silver); text-transform:uppercase; margin-bottom:8px; opacity:.6; }
+.hero-eyebrow { font-family:var(--font-ui); font-size:12px; letter-spacing:4px; color:var(--silver); text-transform:uppercase; margin-bottom:12px; opacity:.78; }
+.hero-title   { font-family:var(--font-ui); font-size:13px; letter-spacing:3px; color:var(--silver); text-transform:uppercase; margin-bottom:8px; opacity:.6; }
 .hero-mission {
-  font-size:clamp(36px,10vw,52px); font-weight:900; letter-spacing:-1px; line-height:1.1; margin-bottom:8px;
+  font-family:var(--font-display);
+  font-size:clamp(36px,10vw,52px); font-weight:900; letter-spacing:1px; line-height:1.1; margin-bottom:8px;
   background:linear-gradient(180deg,#fff 0%,#8ab0e0 60%,#4070c0 100%);
   -webkit-background-clip:text; -webkit-text-fill-color:transparent;
   filter:drop-shadow(0 0 22px rgba(100,160,255,.3));
@@ -70,7 +84,7 @@ html,body {
 .hsq-line {
   font-size:clamp(10px, 3vw, 14px);
   white-space:nowrap;
-  letter-spacing:-.015em;
+  letter-spacing:0;
 }
 
 /* main 메시지 (아래 1줄): 더 크고 굵게, border 없음, 가운데 정렬, 한 줄 고정 */
@@ -80,7 +94,7 @@ html,body {
   font-weight:800;
   font-size:clamp(14px, 4.2vw, 20px);
   line-height:1.45;
-  letter-spacing:-.02em;
+  letter-spacing:0;
   white-space:nowrap;
   text-align:center;
 }
@@ -94,13 +108,13 @@ html,body {
   border-radius:20px; padding:28px 22px; margin-bottom:20px;
   box-shadow:0 8px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.045);
 }
-.card-title { font-size:12px; letter-spacing:3px; color:var(--silver); text-transform:uppercase; margin-bottom:22px; text-align:center; }
+.card-title { font-family:var(--font-ui); font-size:12px; letter-spacing:3px; color:var(--silver); text-transform:uppercase; margin-bottom:22px; text-align:center; }
 
 /* ── FORM ── */
 .form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
 @media(max-width:400px){ .form-row{ grid-template-columns:1fr; } }
 .form-group { display:flex; flex-direction:column; gap:7px; }
-.form-group label { font-size:11px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; }
+.form-group label { font-family:var(--font-ui); font-size:11px; letter-spacing:2px; color:var(--muted); text-transform:uppercase; }
 .form-group input {
   background:rgba(255,255,255,.055); border:1px solid rgba(255,255,255,.1);
   border-radius:10px; padding:14px 16px; color:#fff; font-size:16px;
@@ -112,6 +126,7 @@ html,body {
 .primary-btn {
   width:100%; margin-top:16px;
   background:linear-gradient(135deg,#c8102e,#8b0a1f); color:#fff; border:none; border-radius:12px;
+  font-family:var(--font-ui);
   padding:18px; font-size:16px; font-weight:700; letter-spacing:2px; text-transform:uppercase; cursor:pointer;
   box-shadow:0 4px 30px rgba(200,16,46,.35); transition:transform .15s,box-shadow .15s;
   position:relative; overflow:hidden;
@@ -128,7 +143,7 @@ html,body {
 .q-dot { width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.15); transition:background .3s; }
 .q-dot.done    { background:var(--red); }
 .q-dot.current { background:var(--gold); }
-.q-label { font-size:12px; letter-spacing:2px; color:var(--gold); text-transform:uppercase; margin-bottom:6px; }
+.q-label { font-family:var(--font-ui); font-size:12px; letter-spacing:2px; color:var(--gold); text-transform:uppercase; margin-bottom:6px; }
 .q-text  { font-size:20px; font-weight:700; line-height:1.5; margin-bottom:10px; }
 .q-sub   { font-size:14px; color:var(--muted); margin-bottom:20px; line-height:1.6; }
 .q-options { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
@@ -368,21 +383,20 @@ html,body {
 
 /* ── SEAT MAP (다크 네이비 + 빨강 NASA 톤, viewport 풀폭) ── */
 .seatmap-wrap {
-  display:none; margin:36px 0;
-  /* 스크롤바 제외 실제 viewport 폭 사용 (var(--vw)는 JS에서 setVW로 설정) */
-  width:var(--vw, 100vw);
-  margin-left:calc(var(--vw, 100vw) / -2 + 50%);
-  margin-right:calc(var(--vw, 100vw) / -2 + 50%);
-  padding:0 16px; box-sizing:border-box;
+  display:none; margin:64px 0 36px;
+  width:var(--content-panel);
+  position:relative; left:50%; translate:-50% 0;
+  padding:0; box-sizing:border-box;
 }
 .seatmap-wrap.visible { display:block; }
 .seatmap-header { max-width:1100px; margin:0 auto 22px; text-align:center; }
 .seatmap-header h2 {
-  font-size:13px; letter-spacing:4px; color:rgba(255,255,255,.92);
+  font-family:var(--font-ui);
+  font-size:17px; letter-spacing:4px; color:rgba(255,255,255,.95);
   text-transform:uppercase; font-weight:800; margin:0 0 8px;
 }
 .seatmap-header h2 .accent { color:#ff5b78; }
-.seatmap-header p { font-size:12px; color:var(--muted); letter-spacing:1px; margin:0; }
+.seatmap-header p { font-size:14px; color:rgba(192,200,216,.82); letter-spacing:.5px; margin:0; }
 
 .spacecraft {
   max-width:1100px; margin:0 auto; position:relative;
@@ -394,15 +408,16 @@ html,body {
 }
 .spacecraft-nose { position:absolute; top:-36px; left:50%; transform:translateX(-50%); width:40px; height:40px; }
 
-#seat-grid { display:grid; grid-template-columns:1fr; gap:14px; }
-@media (min-width:720px)  { #seat-grid { grid-template-columns:repeat(2, 1fr); gap:16px 18px; } }
-@media (min-width:1024px) { #seat-grid { grid-template-columns:repeat(3, 1fr); } }
+#seat-grid { display:grid; grid-template-columns:minmax(0, 1fr); gap:14px; }
+@media (min-width:720px)  { #seat-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px 18px; } }
+@media (min-width:1024px) { #seat-grid { grid-template-columns:repeat(3, minmax(0, 1fr)); } }
 
 .team-block {
-  padding:12px 14px 14px;
+  padding:15px 16px 16px;
   background:rgba(8,12,28,.55);
   border:1px solid rgba(120,160,255,.10);
   border-radius:12px;
+  min-width:0;
 }
 .team-block.mine-team {
   border-color:rgba(255,64,96,.45);
@@ -410,8 +425,9 @@ html,body {
   background:linear-gradient(180deg, rgba(60,8,20,.55), rgba(18,8,20,.55));
 }
 .team-label {
-  font-size:10px; letter-spacing:2px; text-transform:uppercase; font-weight:800;
-  color:rgba(255,255,255,.85); margin-bottom:10px;
+  font-family:var(--font-ui);
+  font-size:13px; letter-spacing:1.5px; text-transform:uppercase; font-weight:800;
+  color:rgba(255,255,255,.9); margin-bottom:12px;
   display:flex; align-items:center; gap:6px;
 }
 .team-label::before {
@@ -426,8 +442,9 @@ html,body {
 .seat {
   aspect-ratio:1; border-radius:8px;
   display:flex; flex-direction:column; align-items:center; justify-content:center;
-  font-size:9px; font-weight:700; border:1px solid transparent;
-  padding:4px; text-align:center;
+  font-size:11px; font-weight:700; border:1px solid transparent;
+  padding:5px; text-align:center;
+  min-width:0; overflow:hidden;
 }
 .seat.empty {
   background:rgba(255,255,255,.025);
@@ -445,23 +462,36 @@ html,body {
   color:#fff;
   box-shadow:0 0 18px rgba(200,16,46,.45), inset 0 1px 0 rgba(255,255,255,.18);
 }
-.seat .seat-name { font-size:12px; line-height:1.15; font-weight:700; margin-bottom:2px; }
-.seat .seat-num  { font-size:9px;  opacity:.65; letter-spacing:.5px; }
+.seat .seat-name {
+  font-size:14px; line-height:1.12; font-weight:800; margin-bottom:3px;
+  white-space:nowrap; word-break:keep-all; max-width:100%;
+}
+.seat .seat-name.name-long { font-size:13px; }
+.seat .seat-num  { font-family:var(--font-ui); font-size:11px; opacity:.72; letter-spacing:.5px; }
 
 .legend {
   max-width:1100px; margin:18px auto 0;
   padding-top:18px; border-top:1px solid rgba(255,255,255,.06);
   display:flex; gap:18px; justify-content:center; flex-wrap:wrap;
 }
-.legend-item { display:flex; align-items:center; gap:7px; font-size:11px; letter-spacing:.5px; color:var(--muted); }
+.legend-item { display:flex; align-items:center; gap:7px; font-size:13px; letter-spacing:.2px; color:rgba(192,200,216,.8); }
 .legend-dot  { width:12px; height:12px; border-radius:3px; }
 .legend-dot.empty    { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); }
 .legend-dot.occupied { background:rgba(13,30,72,.6); border:1px solid rgba(100,150,255,.25); }
 .legend-dot.mine     { background:linear-gradient(135deg,#c8102e,#8b0a1f); }
 @media (max-width:480px) {
-  .seatmap-wrap { margin:24px 0; margin-left:calc(var(--vw, 100vw) / -2 + 50%); margin-right:calc(var(--vw, 100vw) / -2 + 50%); padding:0 14px; }
-  .spacecraft   { padding:24px 14px 20px; border-radius:16px; }
-  .seat .seat-name { font-size:11px; }
+  .seatmap-wrap { margin:24px 0; }
+  .seatmap-header h2 { font-size:16px; letter-spacing:2.5px; }
+  .seatmap-header p { font-size:13px; line-height:1.5; }
+  .spacecraft   { padding:26px 15px 22px; border-radius:16px; }
+  .team-block { padding:14px 13px 15px; }
+  .team-label { font-size:13px; margin-bottom:11px; }
+  .seat-row { gap:7px; }
+  .seat { padding:4px 3px; }
+  .seat .seat-name { font-size:13px; }
+  .seat .seat-name.name-long { font-size:12px; }
+  .seat .seat-num { font-size:10px; }
+  .legend-item { font-size:12px; }
 }
 .toast { position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--gold); color:#000; font-weight:700; font-size:15px; padding:14px 28px; border-radius:32px; opacity:0; transition:all .25s; pointer-events:none; z-index:9998; white-space:nowrap; }
 .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
@@ -582,99 +612,128 @@ html,body {
 /* ═══════════════════════════════════════════════ */
 .ticket-card-wrap {
   display:none; margin:0 0 28px;
-  width:var(--vw, 100vw);
-  margin-left:calc(var(--vw, 100vw) / -2 + 50%);
-  margin-right:calc(var(--vw, 100vw) / -2 + 50%);
-  padding:0 16px; box-sizing:border-box;
+  width:var(--wide-panel);
+  position:relative; left:50%; translate:-50% 0;
+  padding:0; box-sizing:border-box;
 }
-.ticket-card-wrap.visible { display:block; animation:tc-reveal 1s cubic-bezier(.16,.84,.36,1) both; }
+.ticket-card-wrap.visible { display:block; animation:tc-reveal .45s cubic-bezier(.16,.84,.36,1) both; }
 @keyframes tc-reveal {
-  0% { opacity:0; transform:scale(.92) translateY(36px); filter:blur(6px); }
-  60% { opacity:1; transform:scale(1.01); filter:blur(0); }
-  100% { opacity:1; transform:scale(1); filter:blur(0); }
+  0% { opacity:0; filter:none; }
+  100% { opacity:1; filter:none; }
 }
 
 .bp-red { color:#ef4444; }
-.bp-en { font-size:.65em; letter-spacing:2px; color:rgba(180,200,240,.6); font-weight:700; }
+.bp-en { font-family:var(--font-ui); font-size:.65em; letter-spacing:2px; color:rgba(180,200,240,.6); font-weight:700; }
 
 /* 자산 PNG는 PIL로 알파 처리됨 — mix-blend-mode 불필요 */
 
 .bp-pc { display:none; }
 .bp-mobile { display:block; }
 @media (min-width: 900px) {
-  .bp-pc { display:grid; grid-template-columns: 1fr 320px; gap:14px; max-width:1240px; margin:0 auto; }
+  .bp-pc { display:grid; grid-template-columns: minmax(0, 1fr) 408px; gap:0; max-width:1340px; margin:0 auto; }
   .bp-mobile { display:none; }
 }
 
 .bp-pc-main, .bp-pc-stub {
-  position:relative; padding:32px;
-  border:1px solid rgba(120,160,255,.18); border-radius:18px;
+  position:relative; padding:28px 30px;
+  border:1.5px solid rgba(199,139,103,.48); border-radius:18px;
   background:
-    radial-gradient(ellipse at 85% 8%, rgba(80,80,180,.22) 0%, transparent 55%),
-    radial-gradient(ellipse at 8% 90%, rgba(40,90,200,.20) 0%, transparent 55%),
-    linear-gradient(180deg, #0a1130 0%, #050a1c 70%, #020410 100%);
-  color:#fff; box-shadow:0 30px 70px -22px rgba(0,0,0,.65);
+    radial-gradient(ellipse at 17% 12%, rgba(28,105,210,.28) 0%, transparent 46%),
+    radial-gradient(ellipse at 88% 10%, rgba(31,77,135,.18) 0%, transparent 54%),
+    linear-gradient(180deg, #04132c 0%, #031027 48%, #020715 100%);
+  color:#fff; box-shadow:0 28px 70px -22px rgba(0,0,0,.68), inset 0 0 0 1px rgba(255,255,255,.035);
   /* overflow:hidden 제거 — 자식 자산이 박스 가장자리에 닿는 걸 방지 */
 }
-.bp-pc-stub { border-left:2px dashed rgba(120,160,255,.18); }
+.bp-pc-main::after, .bp-pc-stub::after, .bp-mobile::after, .bp-codex::after {
+  content:''; position:absolute; inset:18px; pointer-events:none; border-radius:12px;
+  background:
+    radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.85), transparent),
+    radial-gradient(1px 1px at 64% 12%, rgba(255,255,255,.55), transparent),
+    radial-gradient(1px 1px at 88% 42%, rgba(255,255,255,.45), transparent),
+    radial-gradient(1px 1px at 34% 78%, rgba(255,255,255,.5), transparent);
+  opacity:.35;
+}
+.bp-pc-main { border-top-right-radius:0; border-bottom-right-radius:0; border-right:0; }
+.bp-pc-stub { border-top-left-radius:0; border-bottom-left-radius:0; border-left:2px dashed rgba(199,139,103,.58); }
 
 /* PC Row1: SPARTA 로고 큰 좌측 + 우측 컬럼 (MISSION/이름/BOARDING PASS) */
-.bp-pc-row1 { display:flex; align-items:flex-start; gap:24px; margin-bottom:22px; }
-.bp-spartlogo { width:280px; flex-shrink:0; height:auto; }
-.bp-pc-titleblock { flex:1; min-width:0; padding-top:10px; }
-.bp-pc-mtag { display:flex; align-items:center; gap:10px; margin-bottom:6px; }
+.bp-pc-row1 { display:grid; grid-template-columns:380px minmax(0, 1fr); align-items:center; gap:12px; margin-bottom:-22px; }
+.bp-spartlogo { width:380px; flex-shrink:0; height:auto; margin-top:-10px; object-fit:contain; }
+/* 우측 컬럼: SPARTA 로고와 세로 가운데 정렬 */
+.bp-pc-titleblock { min-width:0; }
+.bp-pc-mtag { display:flex; align-items:center; gap:10px; margin-bottom:14px; }
 .bp-mbadge { height:32px; width:auto; }
-.bp-launch-text { font-size:14px; letter-spacing:2px; font-weight:800; color:rgba(220,230,255,.85); }
+.bp-launch-text { font-family:var(--font-ui); font-size:17px; letter-spacing:3px; font-weight:800; color:rgba(220,230,255,.88); }
 .bp-name-input {
-  font-size:clamp(48px, 5.5vw, 78px); font-weight:900; letter-spacing:-.04em;
-  color:#fff; line-height:1.05; margin:8px 0 6px;
-  padding:10px 20px; border:1px solid rgba(120,160,255,.28);
+  font-family:var(--font-body);
+  font-size:clamp(42px, 4.4vw, 64px); font-weight:900; letter-spacing:0;
+  color:#fff; line-height:1.05; margin:0 0 22px;
+  padding:14px 22px; border:1.5px solid rgba(199,139,103,.44);
   border-radius:12px; background:rgba(255,255,255,.03);
   word-break:keep-all;
 }
-.bp-pc-title { font-size:clamp(40px, 5vw, 60px); font-weight:900; color:#fff; letter-spacing:-.01em; line-height:1; margin-top:4px; }
-.bp-pc-subtitle { font-size:14px; color:rgba(180,200,240,.9); margin-top:8px; font-weight:600; }
+.bp-pc-title {
+  font-family:var(--font-ui);
+  font-size:clamp(34px, 2.85vw, 41px); font-weight:500; color:#fff;
+  letter-spacing:4px; line-height:1.05; margin-top:0; white-space:nowrap;
+}
+.bp-pc-subtitle { font-family:var(--font-ui); font-size:16px; color:rgba(180,200,240,.9); margin-top:14px; font-weight:600; }
 
 /* PC Row2: 좌측 우주인 큰 박스 + 우측 입력칸 (underline 스타일) */
-.bp-pc-row2 { display:flex; gap:24px; align-items:stretch; margin-bottom:18px; }
+.bp-pc-row2 { display:grid; grid-template-columns:245px minmax(0, 1fr); gap:30px; align-items:stretch; margin-bottom:18px; padding:18px 16px; border:1.5px solid rgba(199,139,103,.42); border-radius:14px; }
 .bp-pc-astronaut {
-  width:260px; flex-shrink:0;
-  border:1px solid rgba(120,160,255,.18); border-radius:14px;
-  background:radial-gradient(circle at 50% 35%, rgba(60,90,180,.18) 0%, rgba(5,10,28,.45) 80%);
-  padding:16px;
+  width:245px; flex-shrink:0;
+  border:0; border-right:1.5px solid rgba(199,139,103,.5); border-radius:0;
+  background:transparent;
+  padding:0 28px 0 0;
   display:flex; align-items:center; justify-content:center;
-  min-height:240px;
+  min-height:190px;
 }
-.bp-pc-astronaut img { width:100%; height:auto; max-width:220px; object-fit:contain; }
-.bp-pc-fields { flex:1; display:flex; flex-direction:column; gap:14px; min-width:0; }
+.bp-pc-astronaut img { width:100%; height:auto; max-width:210px; object-fit:contain; }
+.bp-pc-fields { flex:1; display:flex; flex-direction:column; justify-content:center; gap:22px; min-width:0; }
 
 /* 입력칸: 시안 #20처럼 단순 박스 + underline 강조 */
 .bp-field {
-  padding:14px 18px;
-  border:1px solid rgba(120,160,255,.20); border-radius:10px;
-  background:rgba(255,255,255,.02); min-width:0;
+  padding:0 0 0 0;
+  border:0; border-radius:0;
+  background:transparent; min-width:0;
 }
 .bp-field-clickable { cursor:pointer; transition:all .15s; }
 .bp-field-clickable:hover { background:rgba(255,255,255,.05); border-color:rgba(245,200,66,.4); }
-.bp-field-label { font-size:13px; letter-spacing:.5px; font-weight:700; color:rgba(180,200,240,.85); margin-bottom:8px; display:flex; align-items:center; gap:6px; }
+.bp-field-label { font-family:var(--font-body); font-size:16px; letter-spacing:0; font-weight:600; color:rgba(245,248,255,.92); margin-bottom:8px; display:flex; align-items:center; gap:10px; }
 .bp-field-value {
-  font-size:17px; font-weight:700; line-height:1.4; color:#fff;
-  word-break:keep-all; padding-bottom:6px;
-  border-bottom:1px solid rgba(120,160,255,.15);
+  font-family:var(--font-body);
+  min-height:48px; font-size:18px; font-weight:500; line-height:1.6; color:#fff;
+  word-break:keep-all; padding:12px 16px 11px;
+  border:1.5px solid rgba(199,139,103,.45); border-radius:10px;
+  background:rgba(0,8,26,.2);
+  letter-spacing:-.005em;
 }
-.bp-field-value.empty { color:rgba(255,255,255,.42); font-weight:500; font-style:italic; }
+.bp-field-value.empty { color:rgba(255,255,255,.45); font-weight:400; font-style:italic; }
 
 /* 출발지 → 도착지 (큰 한글) */
 .bp-pc-journey, .bpm-journey {
-  display:flex; align-items:center; gap:18px;
-  padding:18px 22px; margin-bottom:16px;
-  border:1px solid rgba(120,160,255,.20); border-radius:12px;
+  display:grid; grid-template-columns:minmax(0, 1fr) 64px minmax(0, 1fr); align-items:center; gap:18px;
+  padding:14px 20px; margin-bottom:16px;
+  border:1px solid rgba(199,139,103,.34); border-radius:12px;
   background:rgba(255,255,255,.02);
 }
+.bp-pc-journey {
+  grid-template-columns:minmax(0, 1fr) 64px minmax(0, 1fr);
+  gap:18px;
+}
+.bp-pc-journey .bp-journey-cell:first-child {
+  justify-self:start;
+  padding-right:0;
+}
+.bp-pc-journey .bp-journey-cell:last-child {
+  justify-self:end;
+  padding-left:0;
+}
 .bp-journey-cell { flex:1; min-width:0; }
-.bp-journey-label { font-size:12px; letter-spacing:.5px; font-weight:700; color:rgba(180,200,240,.8); margin-bottom:6px; }
-.bp-journey-value { font-size:clamp(20px, 1.9vw, 26px); font-weight:800; color:#fff; word-break:keep-all; letter-spacing:-.01em; }
-.bp-journey-arrow { flex:0 0 48px; text-align:center; }
+.bp-journey-label { font-size:14px; letter-spacing:0; font-weight:700; color:rgba(180,200,240,.84); margin-bottom:8px; }
+.bp-journey-value { font-size:clamp(24px, 2.05vw, 31px); font-weight:900; color:#fff; word-break:keep-all; letter-spacing:0; }
+.bp-journey-arrow { text-align:center; }
 .bp-journey-arrow span {
   display:inline-flex; align-items:center; justify-content:center;
   width:44px; height:44px; border-radius:50%;
@@ -684,52 +743,86 @@ html,body {
 
 /* 메타 7컬럼: 짤림 방지 + 시안과 유사 */
 .bp-pc-meta, .bpm-meta {
-  display:grid; gap:12px;
-  border:1px solid rgba(120,160,255,.20); border-radius:12px;
-  background:rgba(255,255,255,.02); padding:14px 18px;
+  display:grid; gap:0;
+  border:1px solid rgba(199,139,103,.34); border-radius:12px;
+  background:rgba(255,255,255,.02); padding:13px 14px;
 }
-.bp-pc-meta { grid-template-columns:repeat(6, minmax(0, 1fr)); }
+.bp-pc-meta { grid-template-columns:.75fr .9fr 1.22fr .9fr .95fr 1.05fr; }
 .bpm-meta { grid-template-columns:repeat(3, minmax(0, 1fr)); }
-.bp-meta-cell { display:flex; align-items:center; gap:8px; min-width:0; overflow:hidden; }
+.bp-meta-cell { display:flex; align-items:center; gap:9px; min-width:0; overflow:visible; padding:0 10px; border-right:1px solid rgba(199,139,103,.35); }
+.bp-meta-cell:last-child { border-right:0; }
 .bp-meta-cell > div { min-width:0; flex:1; }
-.bp-meta-icon { font-size:16px; opacity:.9; flex-shrink:0; }
-.bp-meta-label { font-size:10px; letter-spacing:.5px; font-weight:700; color:rgba(180,200,240,.7); white-space:nowrap; }
-.bp-meta-value { font-size:13px; font-weight:800; color:#fff; letter-spacing:-.01em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.bp-meta-icon { font-size:24px; opacity:.95; flex-shrink:0; }
+.bp-meta-label { font-family:var(--font-ui); font-size:11px; letter-spacing:.5px; font-weight:700; color:rgba(180,200,240,.72); white-space:nowrap; }
+.bp-meta-value { font-size:16px; font-weight:900; color:#fff; letter-spacing:0; white-space:nowrap; overflow:visible; text-overflow:clip; }
 
 /* PC 우측 stub */
-.bp-stub-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px; }
-.bp-stub-sparta { width:90px; height:auto; }
+.bp-stub-top { display:none; }
+.bp-stub-sparta { width:120px; height:auto; }
 .bp-stub-year { font-size:10px; letter-spacing:1.5px; font-weight:700; color:rgba(220,230,255,.7); text-align:right; line-height:1.4; }
 .bp-stub-year-num { font-size:13px; font-weight:900; color:#fff; }
-.bp-stub-quote { margin-bottom:14px; }
-.bp-stub-quote-main { font-size:13px; font-weight:800; color:#fff; margin-bottom:6px; letter-spacing:-.01em; }
-.bp-stub-quote-sub { font-size:11px; color:rgba(180,200,240,.75); line-height:1.6; font-weight:500; }
-.bp-stub-mission { position:relative; padding:12px 14px; border:1px solid rgba(120,160,255,.22); border-radius:10px; margin-bottom:14px; background:rgba(255,255,255,.02); }
-.bp-stub-mission-label { font-size:10px; letter-spacing:1.5px; font-weight:900; margin-bottom:3px; }
-.bp-stub-mission-title { font-size:15px; font-weight:900; color:#fff; letter-spacing:-.01em; margin-bottom:3px; }
-.bp-stub-mission-sub { font-size:10px; color:rgba(180,200,240,.85); font-weight:600; }
+.bp-stub-quote { margin-bottom:22px; padding-top:4px; }
+.bp-stub-quote-main { font-size:20px; font-weight:900; color:#fff; margin-bottom:10px; letter-spacing:0; }
+.bp-stub-quote-sub { font-size:15px; color:rgba(180,200,240,.82); line-height:1.65; font-weight:500; }
+.bp-stub-mission { position:relative; padding:18px 20px; border:1px solid rgba(199,139,103,.38); border-radius:12px; margin-bottom:22px; background:rgba(255,255,255,.02); }
+.bp-stub-mission-label { font-family:var(--font-ui); font-size:10px; letter-spacing:1.5px; font-weight:900; margin-bottom:3px; }
+.bp-stub-mission-title { font-family:var(--font-ui); font-size:24px; font-weight:900; color:#fff; letter-spacing:0; margin-bottom:8px; }
+.bp-stub-mission-sub { font-family:var(--font-ui); font-size:14px; color:rgba(180,200,240,.88); font-weight:600; }
 .bp-stub-rocket { position:absolute; right:6px; bottom:4px; width:46px; height:auto; }
 .bp-stub-planets { margin-bottom:14px; }
-.bp-stub-planets-header { font-size:12px; font-weight:800; color:#fff; margin-bottom:10px; display:flex; align-items:center; gap:6px; }
-.bp-stub-planets-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; }
-.bp-stub-planet { position:relative; text-align:center; }
-.bp-stub-planet img { width:100%; max-width:54px; height:auto; }
-.bp-stub-planet.locked img { filter:grayscale(.8) brightness(.45); }
-.bp-stub-planet.current { box-shadow:0 0 0 1.5px #ef4444; border-radius:50%; }
-.bp-stub-planet .lock {
-  position:absolute; right:0; bottom:8px;
-  width:16px; height:16px; border-radius:50%;
-  background:rgba(0,0,0,.75); color:rgba(255,255,255,.85);
-  font-size:9px; display:flex; align-items:center; justify-content:center;
-  border:1px solid rgba(255,255,255,.2);
+.bp-stub-planets-header { font-size:15px; font-weight:800; color:#fff; margin-bottom:13px; display:flex; align-items:center; gap:8px; }
+.bp-stub-planets-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:13px 10px; }
+.bp-stub-planet { text-align:center; min-width:0; padding-top:1px; }
+.bp-planet-orb {
+  position:relative; display:inline-flex; align-items:center; justify-content:center;
+  width:74px; height:66px;
 }
-.bp-stub-planet-name { font-size:9px; font-weight:800; color:#fff; margin-top:2px; }
-.bp-stub-planet.current .bp-stub-planet-name { color:#ef4444; }
+.bp-planet-orb img { width:100%; height:100%; object-fit:contain; display:block; }
+.bp-stub-planet.locked img,
+.bpm-planet.locked img,
+.bp-codex-cell.locked .bp-codex-orb img { filter:none; }
+.bp-planet-ring {
+  position:absolute; inset:1px 6px 1px 6px; border-radius:50%;
+  border:2px solid #ef2f25; box-shadow:0 0 0 1px rgba(239,47,37,.18), 0 0 14px rgba(239,47,37,.32);
+  opacity:0; pointer-events:none;
+}
+.bp-planet-check,
+.bp-planet-lock {
+  position:absolute; right:4px; bottom:1px;
+  width:22px; height:22px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:14px; font-weight:900; line-height:1;
+  border:2px solid currentColor;
+}
+.bp-planet-check {
+  color:#ef2f25; background:#061126; opacity:0;
+}
+.bp-planet-check::before { content:'✓'; transform:translateY(-1px); }
+.bp-planet-lock {
+  color:#e8eefc;
+  background-color:rgba(3,7,18,.86);
+  background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8eefc' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='6.5' y='11' width='11' height='8.5' rx='1.6'/%3E%3Cpath d='M9 11V7.6a3 3 0 0 1 6 0V11'/%3E%3C/svg%3E");
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-size:14px 14px;
+  border-width:1.65px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.13);
+}
+.bp-planet-lock::before,
+.bp-planet-lock::after { content:none; }
+.bp-stub-planet.acquired .bp-planet-ring,
+.bp-stub-planet.acquired .bp-planet-check,
+.bpm-planet.acquired .bp-planet-ring,
+.bpm-planet.acquired .bp-planet-check,
+.bp-codex-cell.acquired .bp-planet-ring,
+.bp-codex-cell.acquired .bp-planet-check { opacity:1; }
+.bp-stub-planet-name { font-size:12px; font-weight:800; color:#fff; margin-top:4px; }
+.bp-stub-planet.acquired .bp-stub-planet-name { color:#ef4444; }
 
-.bp-stub-date { display:flex; justify-content:space-between; padding:10px 0; border-top:1px solid rgba(120,160,255,.15); margin-bottom:10px; }
+.bp-stub-date { display:flex; justify-content:space-between; padding:16px 0 10px; border-top:1px solid rgba(199,139,103,.38); margin-bottom:12px; }
 .bp-stub-date > div { display:flex; flex-direction:column; gap:2px; }
-.bp-stub-date-label { font-size:9px; letter-spacing:2px; font-weight:700; color:rgba(180,200,240,.65); }
-.bp-stub-date-value { font-size:13px; font-weight:800; color:#fff; }
+.bp-stub-date-label { font-family:var(--font-ui); font-size:9px; letter-spacing:2px; font-weight:700; color:rgba(180,200,240,.65); }
+.bp-stub-date-value { font-family:var(--font-ui); font-size:19px; font-weight:800; color:#fff; letter-spacing:1px; }
 .bp-stub-barcode {
   height:32px; margin:8px 0 6px;
   background-image:repeating-linear-gradient(
@@ -743,83 +836,96 @@ html,body {
 
 /* 모바일 세로 카드 */
 .bp-mobile {
-  max-width:500px; margin:0 auto;
-  padding:20px 18px 22px;
-  border:1px solid rgba(120,160,255,.18); border-radius:18px;
+  max-width:500px; width:100%; margin:0 auto;
+  padding:22px 18px 22px;
+  border:1.5px solid rgba(199,139,103,.48); border-radius:18px;
   background:
-    radial-gradient(ellipse at 80% 8%, rgba(80,80,180,.22) 0%, transparent 55%),
-    radial-gradient(ellipse at 12% 88%, rgba(40,90,200,.20) 0%, transparent 55%),
-    linear-gradient(180deg, #0a1130 0%, #050a1c 70%, #020410 100%);
+    radial-gradient(ellipse at 52% 18%, rgba(30,112,225,.30) 0%, transparent 42%),
+    radial-gradient(ellipse at 50% 88%, rgba(245,120,70,.14), transparent 36%),
+    linear-gradient(180deg, #04132c 0%, #031027 55%, #020715 100%);
   color:#fff; box-shadow:0 30px 60px -20px rgba(0,0,0,.65);
 }
-.bpm-top { display:flex; align-items:center; justify-content:space-between; gap:10px; padding-bottom:12px; border-bottom:1px solid rgba(120,160,255,.15); margin-bottom:12px; }
+.bpm-top { display:flex; align-items:center; justify-content:space-between; gap:10px; padding-bottom:12px; border-bottom:1px solid rgba(199,139,103,.38); margin-bottom:12px; }
 .bpm-sparta-small { width:72px; height:auto; }
-.bpm-crew { font-size:11px; letter-spacing:2px; font-weight:800; color:rgba(220,230,255,.85); }
-.bpm-serial { font-size:12px; font-weight:900; color:#fff; padding:3px 10px; border:1px solid rgba(255,255,255,.22); border-radius:6px; }
+.bpm-crew { font-family:var(--font-ui); font-size:11px; letter-spacing:2px; font-weight:800; color:rgba(220,230,255,.85); }
+.bpm-serial { font-family:var(--font-ui); font-size:12px; font-weight:900; color:#fff; padding:3px 10px; border:1px solid rgba(255,255,255,.22); border-radius:6px; }
 /* 모바일 SPARTA 큰 비주얼 (카드 너비 거의 전체) */
 .bpm-hero { text-align:center; margin:6px 0 6px; }
-.bpm-mainlogo { width:min(95%, 380px); height:auto; }
-.bpm-mtag { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:14px; }
+.bpm-hero {
+  min-height:260px; padding-top:24px; display:flex; align-items:center; justify-content:center;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(28,110,220,.34), transparent 42%),
+    radial-gradient(ellipse at 50% 88%, rgba(245,120,70,.18), transparent 35%);
+}
+.bpm-mainlogo { width:min(112%, 450px); height:auto; }
+.bpm-mtag { display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:14px; flex-wrap:nowrap; }
+.bpm-mtag .bp-mbadge { height:24px; flex-shrink:0; }
+.bpm-mtag .bp-launch-text { font-size:12px; letter-spacing:2px; white-space:nowrap; }
 .bpm-name {
-  font-size:clamp(40px, 11vw, 64px); font-weight:900; letter-spacing:-.04em;
+  font-family:var(--font-body);
+  font-size:clamp(40px, 11vw, 64px); font-weight:900; letter-spacing:0;
   text-align:center; line-height:1.05; margin:10px 12px 6px;
   padding:10px 14px; border:1px solid rgba(120,160,255,.28);
   border-radius:12px; background:rgba(255,255,255,.03);
 }
-.bpm-title { font-size:clamp(34px, 9vw, 48px); font-weight:900; text-align:center; line-height:1; letter-spacing:-.01em; }
-.bpm-subtitle { font-size:12px; color:rgba(180,200,240,.9); text-align:center; margin-top:6px; font-weight:600; }
+.bpm-title { font-family:var(--font-ui); font-size:clamp(34px, 9vw, 48px); font-weight:500; text-align:center; line-height:1; letter-spacing:4px; white-space:nowrap; }
+.bpm-subtitle { font-family:var(--font-ui); font-size:12px; color:rgba(180,200,240,.9); text-align:center; margin-top:6px; font-weight:600; }
 .bpm-astronaut { display:flex; justify-content:center; margin:18px 0 12px; }
 .bpm-astronaut img { width:min(60%, 220px); height:auto; }
 .bpm-fields { display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
-.bpm-planets { display:grid; grid-template-columns:repeat(8, 1fr); gap:4px; margin-bottom:12px; padding:10px 6px; border:1px solid rgba(120,160,255,.18); border-radius:10px; background:rgba(255,255,255,.02); }
-.bpm-planet { position:relative; text-align:center; }
-.bpm-planet img { width:100%; }
-.bpm-planet.locked img { filter:grayscale(.8) brightness(.45); }
-.bpm-planet.current { box-shadow:0 0 0 1.5px #ef4444; border-radius:50%; }
-.bpm-planet .lock { position:absolute; right:-1px; bottom:0; width:11px; height:11px; border-radius:50%; background:rgba(0,0,0,.78); color:#fff; font-size:6px; display:flex; align-items:center; justify-content:center; }
+.bpm-planets { display:none; }
+.bpm-planet { text-align:center; }
+.bpm-planet .bp-planet-orb { width:52px; height:48px; }
+.bpm-planet .bp-planet-ring { inset:1px 4px; border-width:1.5px; }
+.bpm-planet .bp-planet-check,
+.bpm-planet .bp-planet-lock { width:16px; height:16px; right:0; bottom:0; font-size:10px; border-width:1.5px; }
+.bpm-planet .bp-planet-lock { border-width:1.35px; }
+.bpm-planet .bp-planet-lock::before { left:4.4px; top:3.2px; width:5.2px; height:5px; border-width:1.3px; }
+.bpm-planet .bp-planet-lock::after { left:4px; top:8px; width:7px; height:5px; border-width:1.3px; }
 .bpm-datebar { display:flex; justify-content:space-between; padding:8px 4px; border-top:1px solid rgba(120,160,255,.15); margin-bottom:8px; }
 .bpm-datebar > div { display:flex; flex-direction:column; gap:2px; }
 
 /* 도감 */
 .bp-codex {
-  margin-top:14px; padding:20px 20px 18px;
-  border:1px solid rgba(120,160,255,.18); border-radius:18px;
+  position:relative;
+  margin-top:16px; padding:28px 28px 24px;
+  border:1.5px solid rgba(199,139,103,.44); border-radius:18px;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(80,60,160,.20) 0%, transparent 55%),
-    linear-gradient(180deg, #0a1130 0%, #050a1c 100%);
+    radial-gradient(ellipse at 50% 0%, rgba(28,105,210,.20) 0%, transparent 54%),
+    linear-gradient(180deg, #04132c 0%, #020715 100%);
   color:#fff;
 }
-.bp-codex-pc { max-width:1240px; margin:14px auto 0; }
+.bp-codex-pc { display:none; max-width:1340px; margin:16px auto 0; }
 .bp-codex-mobile { max-width:500px; margin:14px auto 0; }
-@media (min-width: 900px) { .bp-codex-mobile { display:none; } }
-.bp-codex-header { text-align:center; margin-bottom:18px; }
-.bp-codex-header span:first-child { font-size:18px; font-weight:900; color:#fff; }
-.bp-codex-en { display:block; font-size:11px; letter-spacing:3px; color:rgba(180,200,240,.7); font-weight:700; margin-top:4px; }
-.bp-codex-grid { display:grid; gap:12px; }
+@media (min-width: 900px) {
+  .bp-codex-pc { display:block; }
+  .bp-codex-mobile { display:none; }
+}
+.bp-codex-header { text-align:center; margin-bottom:24px; }
+.bp-codex-header span:first-child { font-size:26px; font-weight:900; color:#fff; }
+.bp-codex-en { display:block; font-family:var(--font-ui); font-size:11px; letter-spacing:3px; color:rgba(180,200,240,.7); font-weight:700; margin-top:4px; }
+.bp-codex-grid { display:grid; gap:16px; }
 .bp-codex-pc .bp-codex-grid { grid-template-columns:repeat(4, 1fr); }
 .bp-codex-mobile .bp-codex-grid { grid-template-columns:repeat(2, 1fr); }
 .bp-codex-cell {
   display:flex; align-items:center; gap:12px;
-  padding:12px 14px;
-  border:1px solid rgba(120,160,255,.14); border-radius:12px;
+  padding:16px 18px;
+  border:1px solid rgba(199,139,103,.28); border-radius:12px;
   background:rgba(255,255,255,.02); position:relative;
+  min-width:0; overflow:hidden;
 }
 .bp-codex-cell.acquired { border-color:#ef4444; box-shadow:0 0 0 1px rgba(239,68,68,.6), 0 0 20px rgba(239,68,68,.15); }
-.bp-codex-orb { width:56px; height:56px; flex-shrink:0; position:relative; }
+.bp-codex-orb { width:78px; height:68px; flex-shrink:0; }
+.bp-codex-orb .bp-planet-orb { width:78px; height:68px; }
 .bp-codex-orb img { width:100%; height:100%; object-fit:contain; }
-.bp-codex-cell.locked .bp-codex-orb img { filter:grayscale(.7) brightness(.5); }
-.bp-codex-orb .lock {
-  position:absolute; right:-2px; bottom:-2px;
-  width:18px; height:18px; border-radius:50%;
-  background:rgba(0,0,0,.78); color:rgba(255,255,255,.85);
-  font-size:10px; display:flex; align-items:center; justify-content:center;
-  border:1.5px solid rgba(255,255,255,.2);
-}
+.bp-codex-orb .bp-planet-ring { inset:1px 6px; }
+.bp-codex-orb .bp-planet-check,
+.bp-codex-orb .bp-planet-lock { right:2px; bottom:-1px; }
 .bp-codex-text { flex:1; min-width:0; }
-.bp-codex-name { font-size:14px; font-weight:900; color:#fff; letter-spacing:-.01em; margin-bottom:3px; }
+.bp-codex-name { font-size:17px; font-weight:900; color:#fff; letter-spacing:0; margin-bottom:5px; }
 .bp-codex-cell.acquired .bp-codex-name { color:#ef4444; }
-.bp-codex-desc { font-size:10.5px; color:rgba(180,200,240,.75); line-height:1.4; word-break:keep-all; }
-.bp-codex-footer { text-align:center; margin-top:14px; font-size:11px; letter-spacing:3px; color:rgba(180,200,240,.6); font-weight:700; }
+.bp-codex-desc { font-size:13px; color:rgba(180,200,240,.78); line-height:1.48; word-break:keep-all; }
+.bp-codex-footer { text-align:center; margin-top:20px; font-size:12px; letter-spacing:3px; color:rgba(180,200,240,.62); font-weight:700; }
 
 /* 편집 모달 */
 .bp-edit-modal {
@@ -835,7 +941,7 @@ html,body {
   box-shadow:0 30px 80px rgba(0,0,0,.6);
 }
 .bp-edit-label { font-size:11px; letter-spacing:2px; font-weight:800; color:#c89f3a; text-transform:uppercase; margin-bottom:10px; }
-.bp-edit-input { width:100%; resize:vertical; font-family:inherit; font-size:15px; font-weight:700; color:#fff; background:rgba(255,255,255,.06); border:1px solid rgba(245,200,66,.45); border-radius:8px; padding:10px 12px; min-height:80px; line-height:1.45; }
+.bp-edit-input { width:100%; resize:vertical; font-family:var(--font-body); font-size:16px; font-weight:500; color:#fff; background:rgba(255,255,255,.06); border:1px solid rgba(245,200,66,.45); border-radius:8px; padding:12px 14px; min-height:90px; line-height:1.6; letter-spacing:-.005em; }
 .bp-edit-input:focus { outline:none; border-color:#f5c842; background:rgba(255,255,255,.1); }
 .bp-edit-btns { display:flex; gap:8px; margin-top:12px; }
 .bp-edit-btn { flex:1; padding:10px 16px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.08); color:#fff; border-radius:8px; font-size:13px; font-weight:700; cursor:pointer; font-family:inherit; }
@@ -893,11 +999,10 @@ html,body {
 /* ── LEADERBOARD ── */
 /* ═══════════════════════════════════════════════ */
 .leaderboard-wrap {
-  display:none; margin:36px 0;
-  width:var(--vw, 100vw);
-  margin-left:calc(var(--vw, 100vw) / -2 + 50%);
-  margin-right:calc(var(--vw, 100vw) / -2 + 50%);
-  padding:0 16px; box-sizing:border-box;
+  display:none; margin:64px 0 36px;
+  width:var(--content-panel);
+  position:relative; left:50%; translate:-50% 0;
+  padding:0; box-sizing:border-box;
 }
 .lb-inner {
   max-width:1100px; margin:0 auto;
@@ -918,13 +1023,15 @@ html,body {
 }
 .lb-header { text-align:center; margin-bottom:18px; }
 .lb-header h2 {
-  font-size:13px; letter-spacing:4px;
-  color:rgba(255,255,255,.92);
+  font-family:var(--font-ui);
+  font-size:17px; letter-spacing:4px;
+  color:rgba(255,255,255,.95);
   text-transform:uppercase; font-weight:800; margin:0 0 8px;
 }
 .lb-header h2 .accent { color:#ff5b78; }
 .lb-header p {
-  font-size:12px; letter-spacing:1px; color:var(--muted);
+  font-family:var(--font-ui);
+  font-size:14px; letter-spacing:.5px; color:rgba(192,200,216,.82);
   margin:0;
 }
 .lb-tabs {
@@ -933,12 +1040,12 @@ html,body {
   border:1px solid rgba(255,255,255,.04);
 }
 .lb-tab {
-  flex:1; padding:9px 0; border:0; border-radius:7px;
+  flex:1; padding:11px 0; border:0; border-radius:7px;
   background:transparent; color:var(--muted);
-  font-size:12px; letter-spacing:2.5px; font-weight:700;
+  font-size:14px; letter-spacing:2px; font-weight:800;
   text-transform:uppercase; cursor:pointer;
   transition:all .18s ease;
-  font-family:inherit;
+  font-family:var(--font-ui);
 }
 .lb-tab:hover { color:var(--silver); }
 .lb-tab.active {
@@ -950,17 +1057,18 @@ html,body {
 .lb-panel[hidden] { display:none; }
 .lb-row {
   display:grid;
-  grid-template-columns:42px 1fr 56px 64px;
+  grid-template-columns:48px 1fr 70px 82px;
   align-items:center;
-  gap:10px;
-  padding:11px 12px;
+  gap:12px;
+  padding:14px 14px;
   border-radius:8px;
-  font-size:13px;
+  font-size:15px;
   border:1px solid transparent;
 }
 .lb-row-head {
-  font-size:10px; letter-spacing:2px; color:var(--muted);
-  text-transform:uppercase; padding:8px 12px; margin-bottom:2px;
+  font-family:var(--font-ui);
+  font-size:12px; letter-spacing:1.6px; color:rgba(192,200,216,.72);
+  text-transform:uppercase; padding:9px 14px; margin-bottom:3px;
 }
 .lb-list .lb-row + .lb-row { margin-top:4px; }
 .lb-list .lb-row {
@@ -974,37 +1082,42 @@ html,body {
   box-shadow:0 0 0 1px rgba(255,64,96,.32), 0 8px 24px rgba(200,16,46,.18);
   font-weight:700;
 }
-.lb-rank { font-weight:800; color:#8ab0e0; font-size:13px; text-align:center; }
+.lb-rank { font-family:var(--font-ui); font-weight:800; color:#8ab0e0; font-size:15px; text-align:center; }
 .lb-list .lb-row.mine .lb-rank { color:#ff5b78; }
 .lb-rank-top {
   display:inline-block; min-width:22px; padding:2px 6px;
   border-radius:4px;
   background:linear-gradient(180deg, rgba(255,64,96,.32), rgba(200,16,46,.14));
-  color:#fff; font-size:11px; letter-spacing:.5px;
+  color:#fff; font-size:13px; letter-spacing:.5px;
 }
-.lb-name { color:var(--silver); font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.lb-name { color:rgba(224,232,248,.92); font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .lb-list .lb-row.mine .lb-name { color:#fff; }
-.lb-team { font-size:11px; color:var(--muted); letter-spacing:1px; text-align:center; }
+.lb-team { font-family:var(--font-ui); font-size:13px; color:rgba(192,200,216,.78); letter-spacing:.5px; text-align:center; }
 .lb-list .lb-row.mine .lb-team { color:rgba(255,200,210,.85); }
-.lb-score { font-weight:800; color:#fff; font-size:14px; text-align:right; font-variant-numeric:tabular-nums; }
+.lb-score { font-family:var(--font-ui); font-weight:800; color:#fff; font-size:16px; text-align:right; font-variant-numeric:tabular-nums; }
 .lb-list .lb-row.mine .lb-score { color:#fff; }
 .lb-score-sub {
-  display:block; font-size:9px; letter-spacing:1px;
+  display:block; font-size:10px; letter-spacing:.7px;
   color:var(--muted); font-weight:600; margin-top:1px;
 }
 .lb-list .lb-row.mine .lb-score-sub { color:rgba(255,200,210,.7); }
 .lb-empty {
   padding:30px 16px; text-align:center;
-  font-size:12px; letter-spacing:1.5px; color:var(--muted);
+  font-size:14px; letter-spacing:1px; color:var(--muted);
 }
 @media(max-width:480px) {
-  .leaderboard-wrap { margin:24px 0; margin-left:calc(var(--vw, 100vw) / -2 + 50%); margin-right:calc(var(--vw, 100vw) / -2 + 50%); padding:0 14px; }
-  .lb-inner { padding:22px 14px 18px; border-radius:16px; }
-  .lb-row { grid-template-columns:34px 1fr 44px 56px; padding:10px 9px; gap:8px; font-size:12px; }
-  .lb-row-head { padding:6px 9px; font-size:9px; }
-  .lb-header h2 { font-size:12px; letter-spacing:3px; }
-  .lb-tab { font-size:11px; letter-spacing:1.8px; padding:8px 0; }
-  .lb-score { font-size:13px; }
+  .leaderboard-wrap { margin:24px 0; }
+  .lb-inner { padding:24px 14px 20px; border-radius:16px; }
+  .lb-header h2 { font-size:16px; letter-spacing:2.5px; }
+  .lb-header p { font-size:13px; line-height:1.5; }
+  .lb-tab { font-size:13px; letter-spacing:1.2px; padding:10px 0; }
+  .lb-row { grid-template-columns:38px 1fr 56px 70px; padding:13px 10px; gap:8px; font-size:14px; }
+  .lb-row-head { padding:8px 10px; font-size:10px; letter-spacing:1.2px; }
+  .lb-rank { font-size:14px; }
+  .lb-rank-top { font-size:12px; min-width:24px; }
+  .lb-team { font-size:12px; }
+  .lb-score { font-size:15px; }
+  .lb-score-sub { font-size:9px; letter-spacing:.3px; }
 }
 
 /* ═══════════════════════════════════════════════ */
@@ -1035,7 +1148,7 @@ html,body {
   color:rgba(200,212,234,.65);
   font-size:12px; letter-spacing:.5px; font-weight:700;
   cursor:pointer; transition:all .18s ease;
-  font-family:inherit;
+  font-family:var(--font-ui);
   white-space:nowrap;
 }
 .topnav-tab:hover { color:#fff; background:rgba(120,160,255,.08); }
@@ -1046,13 +1159,54 @@ html,body {
   box-shadow:0 0 18px rgba(200,16,46,.22);
 }
 /* 로그인 후 hero 카피 숨김 (브랜드 로고/타이틀은 유지) */
+body.is-postlogin .hero { display:none; }
 body.is-postlogin .hero-sub-quote,
 body.is-postlogin .hero-main,
 body.is-postlogin .hero-sub { display:none; }
-body.is-postlogin .hero { padding-bottom:18px; }
+body.is-postlogin .ticket-card-wrap { margin-top:22px; }
 @media(max-width:480px) {
   .topnav { padding:8px 14px; gap:3px; }
   .topnav-tab { font-size:11px; padding:9px 4px; letter-spacing:0; }
+  body.is-postlogin .hero-mission { font-size:clamp(32px, 10vw, 42px); }
+  .ticket-card-wrap {
+    width:calc(var(--vw, 100vw) - 28px);
+    left:auto; translate:none; margin-left:auto; margin-right:auto;
+  }
+  .bp-mobile { padding:22px 16px 24px; border-radius:16px; }
+  .bpm-name { font-size:clamp(36px, 10vw, 52px); margin:14px 4px 10px; }
+  .bpm-title { font-size:clamp(31px, 8.5vw, 42px); margin-top:6px; }
+  .bpm-subtitle { margin-top:10px; }
+  .bpm-astronaut { margin:22px 0 18px; }
+  .bpm-fields { margin-top:8px; margin-bottom:18px; gap:14px; }
+  .bpm-journey { gap:12px; padding:18px 16px; margin:8px 0 18px; }
+  .bp-journey-arrow { flex-basis:40px; }
+  .bp-journey-arrow span { width:38px; height:38px; }
+  .bp-journey-value { font-size:15px; }
+  /* 메타: 6칸을 3x2 그리드로 — 셀 사이 간격 넉넉히, wrap 허용 */
+  .bpm-meta { gap:18px 16px; padding:18px 16px; }
+  .bp-meta-cell { gap:10px; padding:0 8px; min-width:0; }
+  .bp-meta-cell:nth-child(3n) { border-right:0; }
+  .bp-meta-icon { font-size:16px; }
+  .bp-meta-label { font-size:11px; margin-bottom:2px; }
+  .bp-meta-value { font-size:13.5px; white-space:normal; line-height:1.3; word-break:keep-all; letter-spacing:-.005em; }
+  .bpm-planets { display:none; }
+  .bp-codex-mobile { max-width:none; width:100%; }
+  .bp-codex { margin-top:24px; padding:24px 16px 20px; }
+  .bp-codex-header span:first-child { font-size:21px; }
+  .bp-codex-grid { gap:12px; }
+  .bp-codex-cell { padding:14px 12px; gap:10px; align-items:flex-start; }
+  .bp-codex-orb { width:56px; height:54px; }
+  .bp-codex-name { font-size:15px; }
+  .bp-codex-desc { font-size:11.5px; }
+  .tc-controls {
+    position:fixed; left:14px; right:14px; bottom:calc(14px + env(safe-area-inset-bottom, 0px));
+    z-index:80; max-width:none; margin:0; padding:0;
+    background:rgba(3,7,20,.78); border:1px solid rgba(120,160,255,.16);
+    border-radius:14px; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    box-shadow:0 16px 40px rgba(0,0,0,.45);
+  }
+  .tc-btn { padding:13px 12px; font-size:13px; }
+  body.is-postlogin { padding-bottom:86px; }
 }
 </style>
 </head>
@@ -1091,7 +1245,7 @@ body.is-postlogin .hero { padding-bottom:18px; }
   <!-- 섹션 이동 네비 (로그인 후 노출 · 상단 스티키) -->
   <nav class="topnav" id="topnav" aria-label="Section navigation">
     <button class="topnav-tab active" data-target="ticket-card-wrap" type="button" aria-selected="true">탑승권</button>
-    <button class="topnav-tab" data-target="planet-codex-mobile" type="button" aria-selected="false">행성 뱃지 도감</button>
+    <button class="topnav-tab" data-target="planet-codex" type="button" aria-selected="false">행성 뱃지 도감</button>
     <button class="topnav-tab" data-target="seatmap-wrap" type="button" aria-selected="false">팀 구성</button>
     <button class="topnav-tab" data-target="leaderboard-wrap" type="button" aria-selected="false">랭킹</button>
   </nav>
@@ -1121,7 +1275,7 @@ body.is-postlogin .hero { padding-bottom:18px; }
       <!-- 좌측 메인 카드 -->
       <div class="bp-pc-main">
         <div class="bp-pc-row1">
-          <img class="bp-spartlogo" src="images/assets/sparta-main-logo.png" alt="AI 파운더스">
+          <img class="bp-spartlogo" src="images/assets/sparta-main-logo.png?v=20260516-gpt-pc" alt="AI 파운더스">
           <div class="bp-pc-titleblock">
             <div class="bp-pc-mtag">
               <img class="bp-mbadge" src="images/assets/mission-badge.png" alt="">
@@ -1137,7 +1291,7 @@ body.is-postlogin .hero { padding-bottom:18px; }
 
         <div class="bp-pc-row2">
           <div class="bp-pc-astronaut">
-            <img src="images/assets/astronaut.png" alt="">
+            <img src="images/assets/astronaut.png?v=20260516-gpt-pc" alt="">
           </div>
           <div class="bp-pc-fields">
             <div class="bp-field bp-field-clickable" id="bp-pc-mission-wrap">
@@ -1154,7 +1308,7 @@ body.is-postlogin .hero { padding-bottom:18px; }
         <div class="bp-pc-journey">
           <div class="bp-journey-cell">
             <div class="bp-journey-label">출발지</div>
-            <div class="bp-journey-value">아이디어 구상중</div>
+            <div class="bp-journey-value">아이디어 단계</div>
           </div>
           <div class="bp-journey-arrow"><span>→</span></div>
           <div class="bp-journey-cell">
@@ -1166,7 +1320,7 @@ body.is-postlogin .hero { padding-bottom:18px; }
         <div class="bp-pc-meta">
           <div class="bp-meta-cell"><span class="bp-meta-icon">⚛</span><div><div class="bp-meta-label">엔진</div><div class="bp-meta-value">AI</div></div></div>
           <div class="bp-meta-cell"><span class="bp-meta-icon">👥</span><div><div class="bp-meta-label">CREW</div><div class="bp-meta-value">68명</div></div></div>
-          <div class="bp-meta-cell"><span class="bp-meta-icon">🚀</span><div><div class="bp-meta-label">함선</div><div class="bp-meta-value">FOUNDERS호</div></div></div>
+          <div class="bp-meta-cell"><span class="bp-meta-icon">🚀</span><div><div class="bp-meta-label">함선</div><div class="bp-meta-value">파운더스호</div></div></div>
           <div class="bp-meta-cell"><span class="bp-meta-icon">💺</span><div><div class="bp-meta-label">좌석(Seat)</div><div class="bp-meta-value" id="bp-pc-seat">01A</div></div></div>
           <div class="bp-meta-cell"><span class="bp-meta-icon">★</span><div><div class="bp-meta-label">탑승 그룹</div><div class="bp-meta-value" id="bp-pc-team">1팀</div></div></div>
           <div class="bp-meta-cell"><span class="bp-meta-icon">»</span><div><div class="bp-meta-label">탑승 우선순위</div><div class="bp-meta-value">P1</div></div></div>
@@ -1209,18 +1363,12 @@ body.is-postlogin .hero { padding-bottom:18px; }
         <span class="bp-codex-en">PLANET BADGE GUIDE</span>
       </div>
       <div class="bp-codex-grid" id="bp-pc-codex-grid"><!-- JS --></div>
-      <div class="bp-codex-footer">SPARTA AI FOUNDERS CREW 🪐</div>
     </div>
 
     <!-- ============ 모바일 세로형 (<900px) ============ -->
     <div class="bp-mobile" id="bp-mobile">
-      <div class="bpm-top">
-        <img class="bpm-sparta-small" src="images/assets/sparta-small-logo.png" alt="">
-        <span class="bpm-crew">CREW 68</span>
-        <span class="bpm-serial" id="bp-m-serial">0001</span>
-      </div>
       <div class="bpm-hero">
-        <img class="bpm-mainlogo" src="images/assets/sparta-main-logo.png" alt="AI 파운더스">
+        <img class="bpm-mainlogo" src="images/assets/sparta-main-logo.png?v=20260516-gpt-pc" alt="AI 파운더스">
       </div>
       <div class="bpm-mtag">
         <img class="bp-mbadge" src="images/assets/mission-badge.png" alt="">
@@ -1229,7 +1377,7 @@ body.is-postlogin .hero { padding-bottom:18px; }
       <div class="bpm-name" id="bp-m-name">김파운더</div>
       <div class="bpm-title">BOARDING PASS</div>
       <div class="bpm-subtitle">AI Founders = the <span class="bp-red">Apollo 11</span> of 2026</div>
-      <div class="bpm-astronaut"><img src="images/assets/astronaut.png" alt=""></div>
+      <div class="bpm-astronaut"><img src="images/assets/astronaut.png?v=20260516-gpt-pc" alt=""></div>
       <div class="bpm-fields">
         <div class="bp-field bp-field-clickable" id="bp-m-mission-wrap">
           <div class="bp-field-label">🚀 만들고 싶은 서비스</div>
@@ -1243,18 +1391,18 @@ body.is-postlogin .hero { padding-bottom:18px; }
       <div class="bpm-journey">
         <div class="bp-journey-cell">
           <div class="bp-journey-label">출발지</div>
-          <div class="bp-journey-value">아이디어 구상중</div>
+          <div class="bp-journey-value">아이디어 단계</div>
         </div>
         <div class="bp-journey-arrow"><span>→</span></div>
         <div class="bp-journey-cell">
           <div class="bp-journey-label">도착지</div>
-          <div class="bp-journey-value">나만의 서비스 첫 출시</div>
+          <div class="bp-journey-value">나만의 서비스 출시</div>
         </div>
       </div>
       <div class="bpm-meta">
         <div class="bp-meta-cell"><span class="bp-meta-icon">⚛</span><div><div class="bp-meta-label">엔진</div><div class="bp-meta-value">AI</div></div></div>
         <div class="bp-meta-cell"><span class="bp-meta-icon">👥</span><div><div class="bp-meta-label">CREW</div><div class="bp-meta-value">68명</div></div></div>
-        <div class="bp-meta-cell"><span class="bp-meta-icon">🚀</span><div><div class="bp-meta-label">함선</div><div class="bp-meta-value">FOUNDERS호</div></div></div>
+        <div class="bp-meta-cell"><span class="bp-meta-icon">🚀</span><div><div class="bp-meta-label">함선</div><div class="bp-meta-value">파운더스호</div></div></div>
         <div class="bp-meta-cell"><span class="bp-meta-icon">💺</span><div><div class="bp-meta-label">좌석</div><div class="bp-meta-value" id="bp-m-seat">01A</div></div></div>
         <div class="bp-meta-cell"><span class="bp-meta-icon">★</span><div><div class="bp-meta-label">탑승 그룹</div><div class="bp-meta-value" id="bp-m-team">1팀</div></div></div>
         <div class="bp-meta-cell"><span class="bp-meta-icon">»</span><div><div class="bp-meta-label">우선순위</div><div class="bp-meta-value">P1</div></div></div>
@@ -1275,7 +1423,6 @@ body.is-postlogin .hero { padding-bottom:18px; }
         <span class="bp-codex-en">PLANET BADGE GUIDE</span>
       </div>
       <div class="bp-codex-grid" id="bp-m-codex-grid"><!-- JS --></div>
-      <div class="bp-codex-footer">SPARTA AI FOUNDERS CREW 🪐</div>
     </div>
 
     <!-- 미션/한줄 인라인 편집 모달 -->
@@ -1300,7 +1447,7 @@ body.is-postlogin .hero { padding-bottom:18px; }
   <!-- SEAT MAP -->
   <div class="seatmap-wrap" id="seatmap-wrap">
     <div class="seatmap-header">
-      <h2>✦ Crew Manifest <span class="accent">· SPARTA-1</span></h2>
+      <h2>✦ Crew Manifest <span class="accent">· 팀 배정 안내</span></h2>
       <p>빨간 좌석이 나의 자리입니다.</p>
     </div>
     <div class="spacecraft">
@@ -1324,8 +1471,8 @@ body.is-postlogin .hero { padding-bottom:18px; }
   <div class="leaderboard-wrap" id="leaderboard-wrap">
     <div class="lb-inner">
       <div class="lb-header">
-        <h2>✦ Founders Rankings <span class="accent">· LEADERBOARD</span></h2>
-        <p>실시간 집계 · 행성 도장 기준</p>
+        <h2>✦ Founders Rankings <span class="accent">· 개인별/팀별 랭킹보드</span></h2>
+        <p>획득한 점수 기준으로 상위 20위까지 노출됩니다.</p>
       </div>
       <div class="lb-tabs" role="tablist">
         <button class="lb-tab active" data-lb-tab="individual" type="button" role="tab" aria-selected="true">개인</button>
@@ -1345,7 +1492,7 @@ body.is-postlogin .hero { padding-bottom:18px; }
           <div class="lb-col lb-rank">#</div>
           <div class="lb-col lb-name">팀</div>
           <div class="lb-col lb-team">멤버</div>
-          <div class="lb-col lb-score">점수</div>
+          <div class="lb-col lb-score">평균</div>
         </div>
         <div class="lb-list" id="lb-list-teams"></div>
       </div>
@@ -1578,10 +1725,37 @@ async function fetchLeaderboard() {
 let _leaderboardData = null;
 
 function lbEsc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function lbMemberCount(t){
+  if (Array.isArray(t.members)) return t.members.length;
+  if (typeof t.members === 'number') return t.members;
+  if (t.member_count != null) return Number(t.member_count);
+  if (t.count != null) return Number(t.count);
+  return null;
+}
+function lbAverageScore(t){
+  if (t.avg_score != null) return Number(t.avg_score);
+  if (t.average_score != null) return Number(t.average_score);
+  if (t.avg != null) return Number(t.avg);
+  const members = lbMemberCount(t);
+  const total = Number(t.score || 0);
+  return members ? total / members : total;
+}
+function lbFormatScore(n){
+  if (!Number.isFinite(n)) return '0';
+  return Number.isInteger(n) ? String(n) : n.toFixed(1);
+}
 
 function renderLeaderboard(){
   if (!_leaderboardData) return;
   const { individual = [], teams = [] } = _leaderboardData;
+  const visibleIndividuals = individual.filter(p => {
+    const team = Number(p.team);
+    return !Number.isFinite(team) || team < 50;
+  });
+  const visibleTeams = teams.filter(t => {
+    const team = Number(t.team);
+    return !Number.isFinite(team) || team < 50;
+  });
   const indEl = document.getElementById('lb-list-individual');
   const teamEl = document.getElementById('lb-list-teams');
   const emptyEl = document.getElementById('lb-empty');
@@ -1590,7 +1764,7 @@ function renderLeaderboard(){
   const myName = (window._auth && window._auth.name) || (typeof _auth !== 'undefined' && _auth.name) || '';
   const myTeam = (typeof _student !== 'undefined' && _student && _student.team != null) ? Number(_student.team) : null;
 
-  if (!individual.length && !teams.length) {
+  if (!visibleIndividuals.length && !visibleTeams.length) {
     indEl.innerHTML = '';
     teamEl.innerHTML = '';
     if (emptyEl) emptyEl.hidden = false;
@@ -1598,7 +1772,7 @@ function renderLeaderboard(){
   }
   if (emptyEl) emptyEl.hidden = true;
 
-  indEl.innerHTML = individual.slice(0, 20).map((p, i) => {
+  indEl.innerHTML = visibleIndividuals.slice(0, 20).map((p, i) => {
     const mine = !!(myName && p.name && p.name === myName);
     const rank = i + 1;
     const rankMark = rank <= 3 ? `<span class="lb-rank-top">${rank}</span>` : rank;
@@ -1612,21 +1786,19 @@ function renderLeaderboard(){
     </div>`;
   }).join('');
 
-  teamEl.innerHTML = teams.map((t, i) => {
+  const rankedTeams = visibleTeams.slice().sort((a, b) => lbAverageScore(b) - lbAverageScore(a));
+  teamEl.innerHTML = rankedTeams.map((t, i) => {
     const mine = myTeam != null && Number(t.team) === myTeam;
     const rank = i + 1;
     const rankMark = rank <= 3 ? `<span class="lb-rank-top">${rank}</span>` : rank;
-    let memberCount;
-    if (Array.isArray(t.members)) memberCount = t.members.length;
-    else if (typeof t.members === 'number') memberCount = t.members;
-    else if (t.member_count != null) memberCount = t.member_count;
-    else memberCount = null;
+    const memberCount = lbMemberCount(t);
+    const avgScore = lbAverageScore(t);
     const memberLabel = memberCount != null ? `${memberCount}명` : '–';
     return `<div class="lb-row${mine ? ' mine' : ''}">
       <div class="lb-col lb-rank">${rankMark}</div>
       <div class="lb-col lb-name">팀 ${lbEsc(t.team)}</div>
       <div class="lb-col lb-team">${memberLabel}</div>
-      <div class="lb-col lb-score">${Number(t.score || 0)}<span class="lb-score-sub">${Number(t.planet_count || 0)}🪐</span></div>
+      <div class="lb-col lb-score">${lbFormatScore(avgScore)}<span class="lb-score-sub">평균 점수</span></div>
     </div>`;
   }).join('');
 }
@@ -1661,6 +1833,19 @@ function activatePostLoginUI(){
   const nav = document.getElementById('topnav');
   if (nav) nav.classList.add('visible');
 }
+function resetToLoginUI(){
+  document.body.classList.remove('is-postlogin');
+  const nav = document.getElementById('topnav');
+  if (nav) nav.classList.remove('visible');
+  const form = document.getElementById('checkin-form');
+  if (form) form.style.display = 'block';
+  ['ticket-card-wrap','seatmap-wrap','leaderboard-wrap'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.classList.remove('visible');
+  });
+  const firstTab = document.querySelector('.topnav-tab[data-target="ticket-card-wrap"]');
+  if (firstTab) setActiveTab(firstTab);
+}
 function setActiveTab(btn){
   document.querySelectorAll('.topnav-tab').forEach(b => {
     const active = b === btn;
@@ -1673,7 +1858,14 @@ document.addEventListener('click', (e) => {
   if (!btn) return;
   setActiveTab(btn);
   const targetId = btn.getAttribute('data-target');
-  const el = targetId && document.getElementById(targetId);
+  let el = null;
+  if (targetId === 'planet-codex') {
+    el = window.matchMedia('(min-width: 900px)').matches
+      ? document.getElementById('bp-codex-pc')
+      : document.getElementById('bp-codex-mobile');
+  } else {
+    el = targetId && document.getElementById(targetId);
+  }
   if (el) {
     const nav = document.getElementById('topnav');
     const navH = nav && nav.classList.contains('visible') ? nav.offsetHeight + 18 : 16;
@@ -1700,6 +1892,7 @@ const PLANET_LIST = [
   { slug:'neptune', en:'NEPTUNE',kr:'해왕성', desc:'만든 서비스로 매출 1원 이상 달성 시 뱃지 획득' },
   { slug:'pluto',   en:'PLUTO',  kr:'명왕성', desc:'4주 파운더스 여정을 완주 시 뱃지 획득' },
 ];
+const ASSET_VERSION = '20260516-gpt-pc';
 
 function fillTicketCard(s){
   _student = s;
@@ -1750,13 +1943,15 @@ function renderPlanets(planetCount){
   const stubGrid = document.getElementById('bp-stub-planets-grid');
   if (stubGrid) {
     stubGrid.innerHTML = PLANET_LIST.map((p, idx) => {
-      const idx1 = idx + 1;
-      const acquired = idx1 <= planetCount;
-      const current = idx1 === planetCount;
+      const acquired = idx + 1 <= planetCount;
       return `
-        <div class="bp-stub-planet${acquired ? '' : ' locked'}${current ? ' current' : ''}">
-          <img src="images/assets/planet-${p.slug}.png" alt="${p.kr}">
-          ${!acquired ? '<span class="lock">🔒</span>' : ''}
+        <div class="bp-stub-planet ${acquired ? 'acquired' : 'locked'}">
+          <span class="bp-planet-orb">
+            <img src="images/assets/planet-${p.slug}.png?v=${ASSET_VERSION}" alt="${p.kr}">
+            <span class="bp-planet-ring" aria-hidden="true"></span>
+            <span class="bp-planet-check" aria-hidden="true"></span>
+            ${acquired ? '' : '<span class="bp-planet-lock" aria-hidden="true"></span>'}
+          </span>
           <div class="bp-stub-planet-name">${p.kr}</div>
         </div>`;
     }).join('');
@@ -1768,9 +1963,13 @@ function renderPlanets(planetCount){
       const acquired = idx1 <= planetCount;
       const current = idx1 === planetCount;
       return `
-        <div class="bpm-planet${acquired ? '' : ' locked'}${current ? ' current' : ''}">
-          <img src="images/assets/planet-${p.slug}.png" alt="${p.kr}">
-          ${!acquired ? '<span class="lock">🔒</span>' : ''}
+        <div class="bpm-planet ${acquired ? 'acquired' : 'locked'}${current ? ' current' : ''}">
+          <span class="bp-planet-orb">
+            <img src="images/assets/planet-${p.slug}.png?v=${ASSET_VERSION}" alt="${p.kr}">
+            <span class="bp-planet-ring" aria-hidden="true"></span>
+            <span class="bp-planet-check" aria-hidden="true"></span>
+            ${acquired ? '' : '<span class="bp-planet-lock" aria-hidden="true"></span>'}
+          </span>
         </div>`;
     }).join('');
   }
@@ -1783,8 +1982,12 @@ function renderPlanets(planetCount){
       return `
         <div class="bp-codex-cell ${acquired ? 'acquired' : 'locked'}">
           <div class="bp-codex-orb">
-            <img src="images/assets/planet-${p.slug}.png" alt="${p.kr}">
-            ${!acquired ? '<span class="lock">🔒</span>' : ''}
+            <span class="bp-planet-orb">
+              <img src="images/assets/planet-${p.slug}.png?v=${ASSET_VERSION}" alt="${p.kr}">
+              <span class="bp-planet-ring" aria-hidden="true"></span>
+              <span class="bp-planet-check" aria-hidden="true"></span>
+              ${acquired ? '' : '<span class="bp-planet-lock" aria-hidden="true"></span>'}
+            </span>
           </div>
           <div class="bp-codex-text">
             <div class="bp-codex-name">${p.kr}</div>
@@ -1874,6 +2077,43 @@ function closeEditModal(){
 // 유틸: 외부 스크립트 동적 로드
 function ls(src){return new Promise((r,j)=>{const s=document.createElement('script');s.src=src;s.onload=r;s.onerror=j;document.head.appendChild(s);});}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600);}
+async function captureTicketElement(element, isMobile){
+  const previous = {
+    width: element.style.width,
+    maxWidth: element.style.maxWidth,
+    margin: element.style.margin,
+    transform: element.style.transform,
+  };
+  const scale = 2;
+  try {
+    if (isMobile) {
+      // 모바일 저장물은 1080px 폭이 되도록 540 CSS px x 2배로 렌더링한다.
+      element.style.width = '540px';
+      element.style.maxWidth = '540px';
+      element.style.margin = '0 auto';
+    } else {
+      // PC 보딩패스는 현재 시안 폭 1340px을 2배로 저장해 선명도를 확보한다.
+      element.style.width = '1340px';
+      element.style.maxWidth = '1340px';
+      element.style.margin = '0 auto';
+    }
+    await new Promise(requestAnimationFrame);
+    return await html2canvas(element, {
+      backgroundColor: null,
+      scale,
+      useCORS: true,
+      allowTaint: false,
+      imageTimeout: 15000,
+      logging: false,
+      windowWidth: isMobile ? 540 : 1340,
+    });
+  } finally {
+    element.style.width = previous.width;
+    element.style.maxWidth = previous.maxWidth;
+    element.style.margin = previous.margin;
+    element.style.transform = previous.transform;
+  }
+}
 
 // 카드 저장 (카드만 — 정사각/세로 비율로 사용)
 document.getElementById('tc-save-btn').addEventListener('click', async function(){
@@ -1886,7 +2126,7 @@ document.getElementById('tc-save-btn').addEventListener('click', async function(
     // 현재 화면에 보이는 컨테이너만 캡처 (PC vs 모바일)
     const isMobile = window.matchMedia('(max-width: 899px)').matches;
     const card = document.getElementById(isMobile ? 'bp-mobile' : 'bp-pc');
-    const c = await html2canvas(card, { backgroundColor: null, scale: 2.5, useCORS: true });
+    const c = await captureTicketElement(card, isMobile);
     const a = document.createElement('a');
     a.download = `ai-founders-ticket-${Date.now()}.png`;
     a.href = c.toDataURL('image/png');
@@ -1914,7 +2154,7 @@ document.getElementById('tc-share-btn').addEventListener('click', async function
     // 도감은 화면에만 표시 — 다운로드/공유 PNG에는 카드(이미지)만 포함
     const isMobile = window.matchMedia('(max-width: 899px)').matches;
     const capture = document.getElementById(isMobile ? 'bp-mobile' : 'bp-pc');
-    const cap = await html2canvas(capture, { backgroundColor: null, scale: 2.5, useCORS: true });
+    const cap = await captureTicketElement(capture, isMobile);
 
     // 9:16 세로 캔버스에 합성 (인스타 스토리 비율)
     const STORY_W = 1080, STORY_H = 1920;
@@ -1934,12 +2174,15 @@ document.getElementById('tc-share-btn').addEventListener('click', async function
       sctx.arc(Math.random()*STORY_W, Math.random()*STORY_H, Math.random()*1.5+.4, 0, Math.PI*2);
       sctx.fill();
     }
-    // 카드+도감 묶음을 가운데에 배치 (좌우 80px padding)
-    const targetW = STORY_W - 160;
-    const ratio = targetW / cap.width;
+    // 탑승권을 9:16 캔버스 안에 온전히 배치한다. 모바일 긴 티켓은 높이 기준으로 맞춘다.
+    const maxW = STORY_W - 120;
+    const maxH = STORY_H - 140;
+    const ratio = Math.min(maxW / cap.width, maxH / cap.height);
+    const targetW = cap.width * ratio;
     const targetH = cap.height * ratio;
-    const offsetY = Math.max(80, (STORY_H - targetH) / 2);
-    sctx.drawImage(cap, 80, offsetY, targetW, targetH);
+    const offsetX = (STORY_W - targetW) / 2;
+    const offsetY = (STORY_H - targetH) / 2;
+    sctx.drawImage(cap, offsetX, offsetY, targetW, targetH);
 
     // 다운로드
     const blob = await new Promise(r => story.toBlob(r, 'image/png'));
@@ -2014,7 +2257,7 @@ function renderSeatMap(myName){
       } else {
         seat.classList.add(m.name===myName?'mine':'occupied');
         const sn=m.name.length>3?m.name.slice(0,3):m.name;
-        seat.innerHTML=`<span class="seat-name">${sn}</span><span class="seat-num">${slotLabel}</span>`;
+        seat.innerHTML=`<span class="seat-name${sn.length>=3?' name-long':''}">${sn}</span><span class="seat-num">${slotLabel}</span>`;
       }
       row.appendChild(seat);
     });
@@ -2326,18 +2569,20 @@ async function autoLogin(){
 }
 
 // URL 라우팅:
-//   /          → 로그인 폼. localStorage 있으면 자동 로그인 후 /dashboard로 변경
+//   /          → 로그인 폼. localStorage가 있어도 탭/대시보드는 숨김
 //   /dashboard → 카드 페이지. localStorage 없으면 /로 리다이렉트
 async function handleRouting(){
   const path = location.pathname.replace(/\/$/, '') || '/';
   const isDashboard = path === '/dashboard';
+  if (!isDashboard) {
+    resetToLoginUI();
+    return;
+  }
   const ok = await autoLogin();
-  if (isDashboard && !ok) {
+  if (!ok) {
     // 인증 안 됨 → 로그인 폼으로
     try { history.replaceState({}, '', '/'); } catch(e){}
-  } else if (!isDashboard && ok) {
-    // 자동 로그인 됨 → /dashboard로
-    try { history.replaceState({ dashboard:true }, '', '/dashboard'); } catch(e){}
+    resetToLoginUI();
   }
 }
 
@@ -2346,11 +2591,7 @@ window.addEventListener('popstate', () => {
   const isDashboard = location.pathname.replace(/\/$/, '') === '/dashboard';
   if (!isDashboard) {
     // 로그인 페이지로 이동: 카드 숨기고 폼 표시
-    document.getElementById('checkin-form').style.display = 'block';
-    ['ticket-card-wrap','seatmap-wrap','leaderboard-wrap'].forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.classList.remove('visible');
-    });
+    resetToLoginUI();
   } else {
     // /dashboard로 이동: 카드가 안 보이면 자동 로그인 재시도
     if (!document.getElementById('ticket-card-wrap').classList.contains('visible')) {
@@ -2414,9 +2655,9 @@ window.addEventListener('popstate', () => {
       const byTeam = {};
       REAL_ROSTER.forEach(p => { byTeam[p.team] = (byTeam[p.team]||0) + 1; });
       return Object.keys(byTeam).map(t => {
-        const n = byTeam[t];
-        return { team:Number(t), score:5*n, planet_count:n, members:n };
-      }).sort((a,b) => b.score - a.score);
+      const n = byTeam[t];
+        return { team:Number(t), score:5*n, avg_score:5, planet_count:n, members:n };
+      }).sort((a,b) => lbAverageScore(b) - lbAverageScore(a));
     })(),
   };
   activatePostLoginUI();
