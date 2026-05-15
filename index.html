@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta property="og:type" content="website">
 <meta property="og:title" content="파운더스 1기 크루로 호명되었습니다">
 <meta property="og:description" content="2026.05.16 출항 · MISSION: LAUNCH · 50인 크루 정원">
@@ -1689,6 +1692,20 @@ body.is-postlogin .ticket-card-wrap { margin-top:22px; }
 // API 백엔드 (ai-founders-landing의 sheets API 재활용)
 // ═══════════════════════════════════════════════════════
 // 스크롤바 너비 보정 — 100vw 대신 var(--vw) 사용해서 정확한 viewport 너비 (스크롤바 제외)
+// 옛 Service Worker / CacheStorage 강제 제거 (사용자 캐시 잔여 차단)
+(function purgeStaleCaches(){
+  try {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(r => r.unregister());
+      }).catch(()=>{});
+    }
+    if (typeof caches !== 'undefined' && caches.keys) {
+      caches.keys().then(keys => keys.forEach(k => caches.delete(k))).catch(()=>{});
+    }
+  } catch(e) {}
+})();
+
 function setVW(){
   const w = document.documentElement.clientWidth || window.innerWidth;
   document.documentElement.style.setProperty('--vw', w + 'px');
