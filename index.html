@@ -582,9 +582,9 @@ html,body {
 /* ═══════════════════════════════════════════════ */
 .ticket-card-wrap {
   display:none; margin:0 0 28px;
-  width:100vw;
-  position:relative; left:50%; right:50%;
-  margin-left:-50vw; margin-right:-50vw;
+  width:var(--vw, 100vw);
+  margin-left:calc(var(--vw, 100vw) / -2 + 50%);
+  margin-right:calc(var(--vw, 100vw) / -2 + 50%);
   padding:0 16px; box-sizing:border-box;
 }
 .ticket-card-wrap.visible { display:block; animation:tc-reveal 1s cubic-bezier(.16,.84,.36,1) both; }
