@@ -2272,7 +2272,7 @@ document.getElementById('checkin-btn').addEventListener('click', async ()=>{
     if (!allSeats.length) await fetchSeatMap();
     renderSeatMap(j.student.name);
 
-    // 폼 숨김 → 발사 애니메이션 → 카드 reveal
+    // 폼 숨김 → 발사 애니메이션 → 카드 reveal + URL을 /dashboard로 변경
     document.getElementById('checkin-form').style.display = 'none';
     await runLaunch(2500);
     document.getElementById('ticket-card-wrap').classList.add('visible');
@@ -2280,6 +2280,7 @@ document.getElementById('checkin-btn').addEventListener('click', async ()=>{
     document.getElementById('leaderboard-wrap').classList.add('visible');
     activatePostLoginUI();
     loadAndRenderLeaderboard();
+    try { history.pushState({ dashboard:true }, '', '/dashboard'); } catch(e){}
     setTimeout(()=>{
       document.getElementById('ticket-card-wrap').scrollIntoView({behavior:'smooth', block:'start'});
     }, 120);
@@ -2293,7 +2294,7 @@ document.getElementById('checkin-btn').addEventListener('click', async ()=>{
 
 function showErr(msg){const e=document.getElementById('error-msg');e.textContent=msg;e.style.display='block';}
 
-// 자동 로그인 (localStorage에 저장된 인증 정보로 새로고침 시 카드 바로 표시)
+// 자동 로그인 (localStorage 인증 정보 → 카드 reveal, 애니메이션 skip)
 async function autoLogin(){
   try {
     const saved = localStorage.getItem('founders_auth');
@@ -2314,7 +2315,6 @@ async function autoLogin(){
     fillTicketCard(j.student);
     if (!allSeats.length) await fetchSeatMap();
     renderSeatMap(j.student.name);
-    // 자동 로그인은 발사 애니메이션 skip
     document.getElementById('checkin-form').style.display = 'none';
     document.getElementById('ticket-card-wrap').classList.add('visible');
     document.getElementById('seatmap-wrap').classList.add('visible');
@@ -2325,14 +2325,48 @@ async function autoLogin(){
   } catch(e) { return false; }
 }
 
+// URL 라우팅:
+//   /          → 로그인 폼. localStorage 있으면 자동 로그인 후 /dashboard로 변경
+//   /dashboard → 카드 페이지. localStorage 없으면 /로 리다이렉트
+async function handleRouting(){
+  const path = location.pathname.replace(/\/$/, '') || '/';
+  const isDashboard = path === '/dashboard';
+  const ok = await autoLogin();
+  if (isDashboard && !ok) {
+    // 인증 안 됨 → 로그인 폼으로
+    try { history.replaceState({}, '', '/'); } catch(e){}
+  } else if (!isDashboard && ok) {
+    // 자동 로그인 됨 → /dashboard로
+    try { history.replaceState({ dashboard:true }, '', '/dashboard'); } catch(e){}
+  }
+}
+
+// 뒤로가기/앞으로가기 처리
+window.addEventListener('popstate', () => {
+  const isDashboard = location.pathname.replace(/\/$/, '') === '/dashboard';
+  if (!isDashboard) {
+    // 로그인 페이지로 이동: 카드 숨기고 폼 표시
+    document.getElementById('checkin-form').style.display = 'block';
+    ['ticket-card-wrap','seatmap-wrap','leaderboard-wrap'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.remove('visible');
+    });
+  } else {
+    // /dashboard로 이동: 카드가 안 보이면 자동 로그인 재시도
+    if (!document.getElementById('ticket-card-wrap').classList.contains('visible')) {
+      autoLogin();
+    }
+  }
+});
+
 // 디자인 미리보기 모드:
 //   ?preview=1         → 더미 데이터로 카드 즉시 표시 (백엔드 없이 디자인 검토)
 //   ?preview=1&launch=1 → 발사 애니메이션(2.5초) 시연 후 카드 reveal
 (async function previewMode(){
   const params = new URLSearchParams(location.search);
-  // preview 모드가 아니면 자동 로그인 시도
+  // preview 모드가 아니면 URL 라우팅 처리
   if (params.get('preview') !== '1') {
-    autoLogin();
+    handleRouting();
     return;
   }
   // 실제 1기 명단 (68명, 13팀) 기반 더미. _auth = 곽희진(1팀)
