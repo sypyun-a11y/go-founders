@@ -2263,8 +2263,9 @@ document.getElementById('checkin-btn').addEventListener('click', async ()=>{
       return;
     }
 
-    // 인증 정보 메모리 보관 (미션 수정 시 사용)
+    // 인증 정보 메모리 + localStorage 보관 (새로고침 시 자동 로그인)
     _auth = { name: j.student.name, phone: phoneRaw };
+    try { localStorage.setItem('founders_auth', JSON.stringify(_auth)); } catch(e){}
 
     // 카드 채우기 + 좌석 배치도
     fillTicketCard(j.student);
@@ -2292,12 +2293,48 @@ document.getElementById('checkin-btn').addEventListener('click', async ()=>{
 
 function showErr(msg){const e=document.getElementById('error-msg');e.textContent=msg;e.style.display='block';}
 
+// 자동 로그인 (localStorage에 저장된 인증 정보로 새로고침 시 카드 바로 표시)
+async function autoLogin(){
+  try {
+    const saved = localStorage.getItem('founders_auth');
+    if (!saved) return false;
+    const { name, phone } = JSON.parse(saved);
+    if (!name || !phone) return false;
+    const r = await fetch(API_BASE, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({ type: 'student_login', name, phone }),
+    });
+    const j = await r.json();
+    if (!j.ok) {
+      localStorage.removeItem('founders_auth');
+      return false;
+    }
+    _auth = { name: j.student.name, phone };
+    fillTicketCard(j.student);
+    if (!allSeats.length) await fetchSeatMap();
+    renderSeatMap(j.student.name);
+    // 자동 로그인은 발사 애니메이션 skip
+    document.getElementById('checkin-form').style.display = 'none';
+    document.getElementById('ticket-card-wrap').classList.add('visible');
+    document.getElementById('seatmap-wrap').classList.add('visible');
+    document.getElementById('leaderboard-wrap').classList.add('visible');
+    if (typeof activatePostLoginUI === 'function') activatePostLoginUI();
+    if (typeof loadAndRenderLeaderboard === 'function') loadAndRenderLeaderboard();
+    return true;
+  } catch(e) { return false; }
+}
+
 // 디자인 미리보기 모드:
 //   ?preview=1         → 더미 데이터로 카드 즉시 표시 (백엔드 없이 디자인 검토)
 //   ?preview=1&launch=1 → 발사 애니메이션(2.5초) 시연 후 카드 reveal
 (async function previewMode(){
   const params = new URLSearchParams(location.search);
-  if (params.get('preview') !== '1') return;
+  // preview 모드가 아니면 자동 로그인 시도
+  if (params.get('preview') !== '1') {
+    autoLogin();
+    return;
+  }
   // 실제 1기 명단 (68명, 13팀) 기반 더미. _auth = 곽희진(1팀)
   const REAL_ROSTER = [
     {name:'곽희진',team:1},{name:'김민건',team:1},{name:'양한슬',team:1},{name:'이다은',team:1},{name:'정준희',team:1},
